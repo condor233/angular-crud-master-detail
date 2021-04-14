@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, observable,  throwError} from "rxjs";
 import { map,  catchError, flatMap } from "rxjs/operators";
 
-import { Categoty } from "./category.model"
+import { Category } from "./category.model"
 
 
 @Injectable({
@@ -16,14 +16,14 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Categoty[]> {
+  getAll(): Observable<Category[]> {
     return this.http.get(this.apiPath).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCategories)
     )
   }
 
-  getById(id: number): Observable<Categoty> {
+  getById(id: number): Observable<Category> {
     const url = `${this.apiPath}/${id}`;
     return this.http.get(url).pipe(
       catchError(this.handleError),
@@ -31,14 +31,14 @@ export class CategoryService {
     )
   }
 
-  create(category: Categoty): Observable<Categoty> {
+  create(category: Category): Observable<Category> {
     return this.http.post(this.apiPath, category).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCategory)
     )
   }
 
-  update(category: Categoty): Observable<Categoty> {
+  update(category: Category): Observable<Category> {
     const url = `${this.apiPath}/${category.id}`;
     return this.http.put(url, category).pipe(
       catchError(this.handleError),
@@ -54,9 +54,9 @@ export class CategoryService {
     )
   }
 
-  private jsonDataToCategories(jsonData: any[]): Categoty[] {
-    const categories: Categoty[] = [];
-    jsonData.forEach(element => categories.push(element as Categoty));
+  private jsonDataToCategories(jsonData: any[]): Category[] {
+    const categories: Category[] = [];
+    jsonData.forEach(element => categories.push(element as Category));
     return categories;
   }
 
@@ -65,7 +65,7 @@ export class CategoryService {
     return throwError(error)
   }
 
-  private jsonDataToCategory(jsonData: any): Categoty{
-    return jsonData as Categoty;
+  private jsonDataToCategory(jsonData: any): Category{
+    return jsonData as Category;
   }
 }
