@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     CategoryListComponent,
-    CategoryFormComponent,
+    CategoryFormComponent
 
   ],
   imports: [
