@@ -1,4 +1,4 @@
-import { SharedModule } from './../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
