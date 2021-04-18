@@ -1,5 +1,5 @@
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
-import { CategoryService } from './../../pages/categories/shared/category.service';
+import { CategoryService } from '../../../pages/categories/shared/category.service';
 import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
 import { OnInit, AfterContentChecked, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
