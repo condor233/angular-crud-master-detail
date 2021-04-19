@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 interface BreadCrumbItem {
   text: string;
@@ -19,11 +19,9 @@ export class BreadCrumbComponent implements OnInit {
   ngOnInit() {
   }
 
-  isThelastItem(item: BreadCrumbItem): boolean {
+  isTheLastItem(item: BreadCrumbItem): boolean {
     const index = this.items.indexOf(item);
-    return index + 1 === this.items.length;
+    return index + 1 == this.items.length;
   }
 
 }
-
-

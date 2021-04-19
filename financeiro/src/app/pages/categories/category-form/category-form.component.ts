@@ -1,8 +1,10 @@
-import { CategoryService } from './../shared/category.service';
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { Category } from '../shared/category.model';
-import { BaseResourceFormComponent } from 'src/app/shared/components/base-resourse-form/base-resourse-form.component';
+import { Validators } from "@angular/forms";
+
+import { BaseResourceFormComponent } from "../../../shared/components/base-resource-form/base-resource-form.component"
+
+import { Category } from "../shared/category.model";
+import { CategoryService } from "../shared/category.service";
 
 
 @Component({
@@ -12,8 +14,7 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 })
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
 
-  constructor(
-    protected categoryService: CategoryService, protected injector: Injector) {
+  constructor(protected categoryService: CategoryService, protected injector: Injector) { 
     super(injector, new Category(), categoryService, Category.fromJson)
   }
 
@@ -26,15 +27,13 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
     });
   }
 
+
   protected creationPageTitle(): string {
-    return "Cadastro  de Nova Categoria"
+    return "Cadastro de Nova Categoria";
   }
 
   protected editionPageTitle(): string {
     const categoryName = this.resource.name || "";
-
     return "Editando Categoria: " + categoryName;
   }
-
 }
-

@@ -1,10 +1,13 @@
-import { BaseResourceFormComponent } from 'src/app/shared/components/base-resourse-form/base-resourse-form.component';
-import { CategoryService } from './../../categories/shared/category.service';
-import { EntryService } from './../shared/entry.service';
-import { Component, Injector, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { Entry } from '../shared/entry.model';
-import { Category } from '../../categories/shared/category.model';
+import { Component, OnInit, Injector } from '@angular/core';
+import { Validators } from "@angular/forms";
+
+import { BaseResourceFormComponent } from "../../../shared/components/base-resource-form/base-resource-form.component"
+
+import { Entry } from "../shared/entry.model";
+import { EntryService } from "../shared/entry.service";
+
+import { Category } from "../../categories/shared/category.model";
+import { CategoryService } from "../../categories/shared/category.service";
 
 @Component({
   selector: 'app-entry-form',
@@ -23,6 +26,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     normalizeZeros: true,
     radix: ','
   };
+
   ptBR = {
     firstDayOfWeek: 0,
     dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
@@ -35,24 +39,22 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     today: 'Hoje',
     clear: 'Limpar'
-  };
+  }
 
   constructor(
     protected entryService: EntryService,
-    protected categoryServive: CategoryService,
+    protected categoryService: CategoryService,
     protected injector: Injector
-
-
   ) {
-    super(injector,new Entry(), entryService, Entry.fromJson)
+    super(injector, new Entry(), entryService, Entry.fromJson)
   }
 
   ngOnInit() {
     this.loadCategories();
-    super.ngOnInit()
+    super.ngOnInit();
   }
 
-  get typeOptions(): Array<any> {
+  get typeOptions(): Array<any>{
     return Object.entries(Entry.types).map(
       ([value, text]) => {
         return {
@@ -62,6 +64,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
       }
     )
   }
+  
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
@@ -76,20 +79,18 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     });
   }
 
-  private loadCategories() {
-    this.categoryServive.getAll().subscribe(
+  private loadCategories(){
+    this.categoryService.getAll().subscribe(
       categories => this.categories = categories
-    )
+    );
   }
 
   protected creationPageTitle(): string {
-    return "Cadastro  de Nova Categoria"
+    return "Cadastro de Novo Lançamento";
   }
 
   protected editionPageTitle(): string {
     const resourceName = this.resource.name || "";
-
-    return "Editando Categoria: " + resourceName;
+    return "Editando Lançamento: " + resourceName;
   }
-
 }
